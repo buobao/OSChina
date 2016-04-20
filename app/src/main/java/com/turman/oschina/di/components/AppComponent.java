@@ -5,6 +5,7 @@ import android.content.Context;
 import com.turman.oschina.base.BaseAppliation;
 import com.turman.oschina.di.modules.ActivityModule;
 import com.turman.oschina.di.modules.AppModule;
+import com.turman.oschina.di.modules.NetModule;
 import com.turman.oschina.utils.AppUtil;
 import com.turman.oschina.utils.SharedPreferencesUtil;
 
@@ -15,7 +16,7 @@ import dagger.Component;
 /**
  * Created by dqf on 2016/4/18.
  */
-@Component(modules = {AppModule.class})
+@Component(modules = {AppModule.class, NetModule.class})
 @Singleton
 public interface AppComponent {
     void inject(BaseAppliation appliation);
