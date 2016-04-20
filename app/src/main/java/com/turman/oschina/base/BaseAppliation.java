@@ -44,6 +44,14 @@ public class BaseAppliation extends Application{
     public AppComponent getAppComponent(){
         return mAppComponent;
     }
+
+    public SharedPreferencesUtil getSharedPreferencesUtil(){
+        return mSharedPreferencesUtil;
+    }
+
+    public AppUtil getAppUtil(){
+        return mAppUtil;
+    }
 }
 
 

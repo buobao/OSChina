@@ -2,7 +2,7 @@ package com.turman.oschina.di.components;
 
 import android.app.Activity;
 
-import com.turman.oschina.AppStart;
+import com.turman.oschina.base.BaseActivity;
 import com.turman.oschina.di.annotation.ActivityScope;
 import com.turman.oschina.di.modules.ActivityModule;
 import com.turman.oschina.utils.ToastUtil;
@@ -15,7 +15,7 @@ import dagger.Subcomponent;
 @Subcomponent(modules = {ActivityModule.class})
 @ActivityScope
 public interface ActivityComponent {
-    void inject(AppStart activity);
+    void inject(BaseActivity activity);
 
     Activity getActivity();
     ToastUtil getToastUtil();

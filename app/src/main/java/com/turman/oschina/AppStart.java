@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.turman.oschina.base.BaseAppliation;
 import com.turman.oschina.di.components.ActivityComponent;
-import com.turman.oschina.di.modules.ActivityModule;
 import com.turman.oschina.utils.SharedPreferencesUtil;
 import com.turman.oschina.utils.ToastUtil;
 
@@ -42,11 +41,11 @@ public class AppStart extends Activity {
         ButterKnife.bind(this);
 
         //mActivityComponent = DaggerActivityComponent.builder().activityModule(new ActivityModule(this)).build();
-        mActivityComponent = ((BaseAppliation)getApplication()).getAppComponent().plus(new ActivityModule(this));
-        mActivityComponent.inject(this);
+//        mActivityComponent = ((BaseAppliation)getApplication()).getAppComponent().plus(new ActivityModule(this));
+//        mActivityComponent.inject(this);
 
 
-        //mSharedPreferencesUtil = ((BaseAppliation)getApplication()).getAppComponent().getSharedPreferencesUtil();
+        mSharedPreferencesUtil = ((BaseAppliation)getApplication()).getAppComponent().getSharedPreferencesUtil();
         mSharedPreferencesUtil.set("userName","buobao");
     }
 
