@@ -3,7 +3,7 @@ package com.turman.oschina.di.modules;
 import android.app.Application;
 import android.content.Context;
 
-import com.turman.oschina.base.BaseAppliation;
+import com.turman.oschina.base.BaseApplication;
 
 import javax.inject.Singleton;
 
@@ -15,10 +15,10 @@ import dagger.Provides;
  */
 @Module
 public class AppModule {
-    BaseAppliation mApplication;
+    BaseApplication mApplication;
     Context mContext;
 
-    public AppModule(BaseAppliation appliation) {
+    public AppModule(BaseApplication appliation) {
         mApplication = appliation;
         mContext = (Context) appliation;
     }

@@ -48,11 +48,11 @@ public class User extends Entity {
     public int favoritecount;
 
     @Transient
-    private String account;
+    public String account;
     @Transient
-    private String pwd;
+    public String pwd;
     @Transient
-    private boolean isRememberMe;
+    public boolean isRememberMe;
 
     @Override
     public String toString() {

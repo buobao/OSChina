@@ -18,7 +18,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mActivityComponent = ((BaseAppliation)getApplication()).getAppComponent().plus(new ActivityModule(this));
+        mActivityComponent = ((BaseApplication)getApplication()).getAppComponent().plus(new ActivityModule(this));
         mActivityComponent.inject(this);
 
         ButterKnife.bind(this);

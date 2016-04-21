@@ -19,8 +19,6 @@ public class NotebookData extends Entity implements Serializable,
     private static final long serialVersionUID = 1L;
 
     @Element(required = false)
-    public int id;
-    @Element(required = false)
     public int iid;
     @Element(required = false)
     public String timestamp;

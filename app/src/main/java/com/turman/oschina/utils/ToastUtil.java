@@ -1,6 +1,5 @@
 package com.turman.oschina.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,8 +22,8 @@ public class ToastUtil {
     private long lastToastTime;
 
     @Inject
-    public ToastUtil(Activity activity){
-        mContext = activity;
+    public ToastUtil(Context context){
+        mContext = context;
     }
 
     public void showToast(int message) {

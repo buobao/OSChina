@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.turman.oschina.base.BaseAppliation;
+import com.turman.oschina.base.BaseApplication;
 import com.turman.oschina.bean.list.NewsList;
 import com.turman.oschina.di.components.ActivityComponent;
 import com.turman.oschina.di.modules.ActivityModule;
@@ -54,7 +54,7 @@ public class AppStart extends Activity {
         ButterKnife.bind(this);
 
         //mActivityComponent = DaggerActivityComponent.builder().activityModule(new ActivityModule(this)).build();
-        mActivityComponent = ((BaseAppliation)getApplication()).getAppComponent().plus(new ActivityModule(this));
+        mActivityComponent = ((BaseApplication)getApplication()).getAppComponent().plus(new ActivityModule(this));
         mActivityComponent.inject(this);
 
 

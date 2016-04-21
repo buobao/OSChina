@@ -5,11 +5,13 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
 
+import com.turman.oschina.cache.DataCleanManager;
 import com.turman.oschina.di.components.AppComponent;
 import com.turman.oschina.di.components.DaggerAppComponent;
 import com.turman.oschina.di.modules.AppModule;
 import com.turman.oschina.utils.AppUtil;
 import com.turman.oschina.utils.SharedPreferencesUtil;
+import com.turman.oschina.utils.ToastUtil;
 
 import javax.inject.Inject;
 
@@ -17,7 +19,7 @@ import javax.inject.Inject;
  * Created by dqf on 2016/4/18.
  */
 @SuppressLint("InflateParams")
-public class BaseAppliation extends Application{
+public class BaseApplication extends Application{
     private static String PREF_NAME = "creativelocker.pref";
     private static String LAST_REFRESH_TIME = "last_refresh_time.pref";
 
@@ -26,12 +28,16 @@ public class BaseAppliation extends Application{
     private static String lastToast = "";
     private static long lastToastTime;
 
-    AppComponent mAppComponent;
+    protected AppComponent mAppComponent;
 
     @Inject
-    SharedPreferencesUtil mSharedPreferencesUtil;
+    protected SharedPreferencesUtil mSharedPreferencesUtil;
     @Inject
-    AppUtil mAppUtil;
+    protected AppUtil mAppUtil;
+    @Inject
+    protected ToastUtil mToastUtil;
+    @Inject
+    protected DataCleanManager mDataCleanManager;
 
     @Override
     public void onCreate() {
@@ -51,6 +57,14 @@ public class BaseAppliation extends Application{
 
     public AppUtil getAppUtil(){
         return mAppUtil;
+    }
+
+    public ToastUtil getToastUtil(){
+        return mToastUtil;
+    }
+
+    public DataCleanManager getDataCleanManager(){
+        return mDataCleanManager;
     }
 }
 

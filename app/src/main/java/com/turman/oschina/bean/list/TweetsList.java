@@ -23,7 +23,7 @@ public class TweetsList extends Entity implements ListEntity<Tweet> {
     public final static int CATALOG_HOT = -1;
     public final static int CATALOG_ME = 1;
 	@Element(required = false)
-	public int tweetcount;
+	public int tweetCount;
 	@Element(required = false)
 	public int pagesize;
 	@ElementList(required = false)

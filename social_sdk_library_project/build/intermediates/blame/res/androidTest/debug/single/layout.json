@@ -168,12 +168,12 @@
         "source": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\bundles\\debug\\res\\layout\\messenger_button_send_blue_small.xml"
     },
     {
-        "merged": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\umeng_socialize_ucenter.xml",
-        "source": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\bundles\\debug\\res\\layout\\umeng_socialize_ucenter.xml"
-    },
-    {
         "merged": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\com_facebook_login_fragment.xml",
         "source": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\bundles\\debug\\res\\layout\\com_facebook_login_fragment.xml"
+    },
+    {
+        "merged": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\umeng_socialize_ucenter.xml",
+        "source": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\bundles\\debug\\res\\layout\\umeng_socialize_ucenter.xml"
     },
     {
         "merged": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\umeng_bak_at_list.xml",

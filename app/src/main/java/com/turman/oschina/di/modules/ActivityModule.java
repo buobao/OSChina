@@ -2,7 +2,10 @@ package com.turman.oschina.di.modules;
 
 import android.app.Activity;
 
+import com.turman.oschina.AppContext;
 import com.turman.oschina.di.annotation.ActivityScope;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -23,4 +26,8 @@ public class ActivityModule {
         return mActivity;
     }
 
+    @Provides @Singleton
+    public AppContext providesAppContext(){
+        return (AppContext)mActivity.getApplication();
+    }
 }

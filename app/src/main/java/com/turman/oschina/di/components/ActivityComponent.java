@@ -6,7 +6,6 @@ import com.turman.oschina.AppStart;
 import com.turman.oschina.base.BaseActivity;
 import com.turman.oschina.di.annotation.ActivityScope;
 import com.turman.oschina.di.modules.ActivityModule;
-import com.turman.oschina.utils.ToastUtil;
 
 import dagger.Subcomponent;
 
@@ -20,6 +19,4 @@ public interface ActivityComponent {
     void inject(AppStart appStart);
 
     Activity getActivity();
-    ToastUtil getToastUtil();
-
 }
