@@ -2,6 +2,10 @@ package com.turman.oschina.bean;
 
 import com.turman.oschina.bean.base.Entity;
 
+import org.simpleframework.xml.Default;
+import org.simpleframework.xml.DefaultType;
+import org.simpleframework.xml.Root;
+
 /**
  * 活动报名者实体类
  * @author FireAnt（http://my.oschina.net/LittleDY）
@@ -9,6 +13,8 @@ import com.turman.oschina.bean.base.Entity;
  * 
  */
 @SuppressWarnings("serial")
+@Root(name = "apply")
+@Default(DefaultType.FIELD)
 public class Apply extends Entity {
 	public int userid;
 	public String name;

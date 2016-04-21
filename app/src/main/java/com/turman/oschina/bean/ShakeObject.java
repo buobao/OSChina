@@ -1,5 +1,12 @@
 package com.turman.oschina.bean;
 
+import org.simpleframework.xml.Default;
+import org.simpleframework.xml.DefaultType;
+import org.simpleframework.xml.Root;
+import org.simpleframework.xml.Transient;
+
+@Root(name = "oschina")
+@Default(value = DefaultType.FIELD,required = false)
 public class ShakeObject {
 
     public String randomtype; // 数据类型
@@ -13,7 +20,10 @@ public class ShakeObject {
     public String commentCount;
     public String url;
 
+    @Transient
     public static final String RANDOMTYPE_NEWS = "1";
+    @Transient
     public static final String RANDOMTYPE_BLOG = "2";
+    @Transient
     public static final String RANDOMTYPE_SOFTWARE = "3";
 }

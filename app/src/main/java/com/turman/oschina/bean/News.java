@@ -2,6 +2,10 @@ package com.turman.oschina.bean;
 
 import com.turman.oschina.bean.base.Entity;
 
+import org.simpleframework.xml.Default;
+import org.simpleframework.xml.DefaultType;
+import org.simpleframework.xml.Root;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +17,8 @@ import java.util.List;
  *
  */
 @SuppressWarnings("serial")
+@Root(name = "news")
+@Default(value = DefaultType.FIELD, required = false)
 public class News extends Entity {
 	
 	public final static int NEWSTYPE_NEWS = 0x00;//0 新闻
@@ -24,23 +30,27 @@ public class News extends Entity {
 	public String url;
 	public String body;
 	public String author;
-	public int authorId;
+	public int authorid;
 	public int commentCount;
 	public String pubDate;
 	public String softwareLink;
 	public String softwareName;
 	public int favorite;
-	public NewsType newsType;
+	public NewsType newstype;
 	public List<Relative> relatives = new ArrayList<Relative>();
 
-	public class NewsType implements Serializable{
+	@Root(name = "newstype")
+	@Default(value = DefaultType.FIELD, required = false)
+	public static class NewsType implements Serializable{
 		public int type;
 		public String attachment;
 		public int authoruid2;
-		public String eventUrl;
+		public String eventurl;
 	} 
 
-	public class Relative implements Serializable{
+	@Root(name = "relative")
+	@Default(value = DefaultType.FIELD, required = false)
+	public static class Relative implements Serializable{
 		public String title;
 		public String url;
 	} 

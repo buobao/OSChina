@@ -4,9 +4,10 @@ import com.turman.oschina.bean.LoginUserBean;
 import com.turman.oschina.bean.list.NewsList;
 import com.turman.oschina.utils.net.UrlHelper;
 
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -22,7 +23,7 @@ public interface OSChinaService {
      * @return
      */
     @POST(UrlHelper.LOGIN)
-    Observable<LoginUserBean> login(@Part("username") String username,@Part("pwd") String pwd, @Part("keep_login") int keep_login);
+    Observable<LoginUserBean> login(@Field("username") String username, @Field("pwd") String pwd, @Field("keep_login") int keep_login);
 
     /**
      * 读取新闻列表
@@ -32,6 +33,6 @@ public interface OSChinaService {
      * @return
      */
     @GET(UrlHelper.NEWS_LIST)
-    Observable<NewsList> getNewsList(@Part("catalog") int catalog, @Part("pageIndex") int pageIndex, @Part("pageSize") int pageSize);
+    Observable<NewsList> getNewsList(@Query("catalog") int catalog, @Query("pageIndex") int pageIndex, @Query("pageSize") int pageSize);
 
 }

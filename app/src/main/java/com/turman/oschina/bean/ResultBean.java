@@ -3,6 +3,10 @@ package com.turman.oschina.bean;
 import com.turman.oschina.bean.base.Base;
 import com.turman.oschina.bean.base.Notice;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+import org.simpleframework.xml.Transient;
+
 /**
  * 操作结果实体类
  * 
@@ -11,16 +15,19 @@ import com.turman.oschina.bean.base.Notice;
  * 
  */
 @SuppressWarnings("serial")
+@Root(name = "oschina")
 public class ResultBean extends Base {
-
+    @Element(required = false)
     public Result result;
+    @Element(required = false)
     public Notice notice;
+    @Element(required = false)
     public Comment comment;
 
     //现在pub_message接口返回的是comment对象。
-    //@XStreamAlias("message")
+    @Transient
     public MessageDetail message;
-
+    @Element(required = false)
     public int relation;
 
     public MessageDetail getMessage() {
@@ -30,7 +37,7 @@ public class ResultBean extends Base {
             message.id =comment.id;
             message.portrait =comment.portrait;
             message.author =comment.author;
-            message.authorId = comment.id;
+            message.authorid = comment.id;
             message.content = comment.content;
             message.pubDate = comment.pubDate;
         }

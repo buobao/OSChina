@@ -3,6 +3,10 @@ package com.turman.oschina.bean.list;
 import com.turman.oschina.bean.Comment;
 import com.turman.oschina.bean.base.Entity;
 
+import org.simpleframework.xml.Default;
+import org.simpleframework.xml.DefaultType;
+import org.simpleframework.xml.Root;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +18,11 @@ import java.util.List;
  *
  */
 @SuppressWarnings("serial")
+@Root(name = "oschina")
+@Default(value = DefaultType.FIELD,required = false)
 public class BlogCommentList extends Entity implements ListEntity<Comment> {
 
-	public int pageSize;
+	public int pagesize;
 	public int allCount;
 	public List<Comment> commentlist = new ArrayList<Comment>();
 

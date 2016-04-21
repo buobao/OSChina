@@ -1,5 +1,10 @@
 package com.turman.oschina.bean;
 
+import org.simpleframework.xml.Default;
+import org.simpleframework.xml.DefaultType;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+
 import java.io.Serializable;
 
 /**
@@ -9,17 +14,22 @@ import java.io.Serializable;
  * 
  */
 @SuppressWarnings("serial")
+@Root(name = "oschina")
 public class Update implements Serializable {
-
+	@Element(required = false)
 	public UpdateBean update;
 
-	public class UpdateBean implements Serializable {
+	@Root(name = "update")
+	@Default(value = DefaultType.FIELD,required = false)
+	public static class UpdateBean implements Serializable {
 		public String wp7;
 		public String ios;
 		public AndroidBean android;
 	}
 
-	public class AndroidBean implements Serializable {
+	@Root(name = "android")
+	@Default(value = DefaultType.FIELD,required = false)
+	public static class AndroidBean implements Serializable {
 		public int versionCode;
 		public String versionName;
 		public String downloadUrl;

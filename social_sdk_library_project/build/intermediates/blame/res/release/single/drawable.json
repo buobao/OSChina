@@ -396,12 +396,12 @@
         "source": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\src\\main\\res\\drawable\\umeng_socialize_follow_check.xml"
     },
     {
-        "merged": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\res\\merged\\release\\drawable\\umeng_socialize_location_off.png",
-        "source": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\src\\main\\res\\drawable\\umeng_socialize_location_off.png"
-    },
-    {
         "merged": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\res\\merged\\release\\drawable\\umeng_socialize_action_share_normal.png",
         "source": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\src\\main\\res\\drawable\\umeng_socialize_action_share_normal.png"
+    },
+    {
+        "merged": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\res\\merged\\release\\drawable\\umeng_socialize_location_off.png",
+        "source": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\src\\main\\res\\drawable\\umeng_socialize_location_off.png"
     },
     {
         "merged": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\res\\merged\\release\\drawable\\umeng_socialize_instagram_off.png",

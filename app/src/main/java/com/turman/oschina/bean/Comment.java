@@ -5,6 +5,10 @@ import android.os.Parcelable;
 
 import com.turman.oschina.bean.base.Entity;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +20,7 @@ import java.util.List;
  *
  */
 @SuppressWarnings("serial")
+@Root(name = "comment")
 public class Comment extends Entity implements Parcelable {
 
 	public static final String BUNDLE_KEY_COMMENT = "bundle_key_comment";
@@ -32,13 +37,21 @@ public class Comment extends Entity implements Parcelable {
 	public final static int CLIENT_IPHONE = 4;
 	public final static int CLIENT_WINDOWS_PHONE = 5;
 
+	@Element(required = false)
 	public String portrait;
+	@Element(required = false)
 	public String content;
+	@Element(required = false)
 	public String author;
-	public int authorId;
+	@Element(required = false)
+	public int authorid;
+	@Element(required = false)
 	public String pubDate;
-	public int appClient;
+	@Element(required = false)
+	public int appclient;
+	@ElementList(required = false)
 	public List<Reply> replies = new ArrayList<Reply>();
+	@ElementList(required = false)
 	public List<Refer> refers = new ArrayList<Refer>();
 	
 	@SuppressWarnings("unchecked")
@@ -46,9 +59,9 @@ public class Comment extends Entity implements Parcelable {
 		id = source.readInt();
 		portrait = source.readString();
 		author = source.readString();
-		authorId = source.readInt();
+		authorid = source.readInt();
 		pubDate = source.readString();
-		appClient = source.readInt();
+		appclient = source.readInt();
 		content = source.readString();
 
 		replies = source.readArrayList(Reply.class.getClassLoader());
@@ -60,9 +73,9 @@ public class Comment extends Entity implements Parcelable {
 		dest.writeInt(id);
 		dest.writeString(portrait);
 		dest.writeString(author);
-		dest.writeInt(authorId);
+		dest.writeInt(authorid);
 		dest.writeString(pubDate);
-		dest.writeInt(appClient);
+		dest.writeInt(appclient);
 		dest.writeString(content);
 
 		dest.writeList(replies);
@@ -74,9 +87,13 @@ public class Comment extends Entity implements Parcelable {
 		return 0;
 	}
 
+	@Root(name = "reply")
 	public static class Reply implements Serializable, Parcelable {
+		@Element(required = false)
 		public String rauthor;
+		@Element(required = false)
 		public String rpubDate;
+		@Element(required = false)
 		public String rcontent;
 		
 		public Reply() {
@@ -115,8 +132,11 @@ public class Comment extends Entity implements Parcelable {
 
 	}
 
+	@Root(name = "refer")
 	public static class Refer implements Serializable, Parcelable {
+		@Element(required = false)
 		public String refertitle;
+		@Element(required = false)
 		public String referbody;
 
 		public Refer() {

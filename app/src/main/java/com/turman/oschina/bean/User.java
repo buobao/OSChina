@@ -2,6 +2,11 @@ package com.turman.oschina.bean;
 
 import com.turman.oschina.bean.base.Entity;
 
+import org.simpleframework.xml.Default;
+import org.simpleframework.xml.DefaultType;
+import org.simpleframework.xml.Root;
+import org.simpleframework.xml.Transient;
+
 /**
  * 登录用户实体类
  * 
@@ -10,16 +15,23 @@ import com.turman.oschina.bean.base.Entity;
  * @created 2012-3-21
  */
 @SuppressWarnings("serial")
+@Root(name = "user")
+@Default(value = DefaultType.FIELD,required = false)
 public class User extends Entity {
-
+    @Transient
     public final static int RELATION_ACTION_DELETE = 0x00;// 取消关注
+    @Transient
     public final static int RELATION_ACTION_ADD = 0x01;// 加关注
-
+    @Transient
     public final static int RELATION_TYPE_BOTH = 0x01;// 双方互为粉丝
+    @Transient
     public final static int RELATION_TYPE_FANS_HIM = 0x02;// 你单方面关注他
+    @Transient
     public final static int RELATION_TYPE_NULL = 0x03;// 互不关注
+    @Transient
     public final static int RELATION_TYPE_FANS_ME = 0x04;// 只有他关注我
 
+    public int uid;
     public String location;
     public String name;
     public int followers;
@@ -35,10 +47,11 @@ public class User extends Entity {
     public String from;
     public int favoritecount;
 
+    @Transient
     private String account;
-
+    @Transient
     private String pwd;
-
+    @Transient
     private boolean isRememberMe;
 
     @Override

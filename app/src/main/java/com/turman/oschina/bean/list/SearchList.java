@@ -3,6 +3,10 @@ package com.turman.oschina.bean.list;
 import com.turman.oschina.bean.SearchResult;
 import com.turman.oschina.bean.base.Entity;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +18,7 @@ import java.util.List;
  * 
  */
 @SuppressWarnings("serial")
+@Root(name = "oschina")
 public class SearchList extends Entity implements ListEntity<SearchResult> {
 
 	public final static String CATALOG_ALL = "all";
@@ -22,11 +27,13 @@ public class SearchList extends Entity implements ListEntity<SearchResult> {
 	public final static String CATALOG_SOFTWARE = "software";
 	public final static String CATALOG_BLOG = "blog";
 
-	public int pageSize;
-	public List<SearchResult> list = new ArrayList<SearchResult>();
+	@Element(required = false)
+	public int pagesize;
+	@ElementList(required = false)
+	public List<SearchResult> results = new ArrayList<SearchResult>();
 
 	@Override
 	public List<SearchResult> getList() {
-		return list;
+		return results;
 	}
 }

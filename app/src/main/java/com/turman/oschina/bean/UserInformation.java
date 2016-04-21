@@ -2,6 +2,10 @@ package com.turman.oschina.bean;
 
 import com.turman.oschina.bean.base.Base;
 
+import org.simpleframework.xml.Default;
+import org.simpleframework.xml.DefaultType;
+import org.simpleframework.xml.Root;
+
 import java.util.List;
 
 /** 
@@ -11,9 +15,10 @@ import java.util.List;
  * 
  */
 @SuppressWarnings("serial")
+@Root(name = "oschina")
+@Default(value = DefaultType.FIELD,required = false)
 public class UserInformation extends Base {
-
 	public User user;
-	public int pageSize;
-	public List<Active> activeList;
+	public int pagesize;
+	public List<Active> activies;
 }

@@ -5,6 +5,10 @@ import android.os.Parcelable;
 
 import com.turman.oschina.bean.base.Entity;
 
+import org.simpleframework.xml.Default;
+import org.simpleframework.xml.DefaultType;
+import org.simpleframework.xml.Root;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +21,8 @@ import java.util.List;
  * @changed 2014-12-1
  */
 @SuppressWarnings("serial")
+@Root(name = "tweet")
+@Default(value = DefaultType.FIELD,required = false)
 public class Tweet extends Entity implements Parcelable {
 
     public String portrait;

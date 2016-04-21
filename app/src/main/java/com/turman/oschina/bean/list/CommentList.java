@@ -3,6 +3,10 @@ package com.turman.oschina.bean.list;
 import com.turman.oschina.bean.Comment;
 import com.turman.oschina.bean.base.Entity;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -16,6 +20,7 @@ import java.util.List;
  * 
  */
 @SuppressWarnings("serial")
+@Root(name = "oschina")
 public class CommentList extends Entity implements ListEntity<Comment> {
 
     public final static int CATALOG_NEWS = 1;
@@ -24,18 +29,21 @@ public class CommentList extends Entity implements ListEntity<Comment> {
     public final static int CATALOG_ACTIVE = 4;
     public final static int CATALOG_MESSAGE = 4;// 动态与留言都属于消息中心
 
-    public int pageSize;
+    @Element(required = false)
+    public int pagesize;
+    @Element(required = false)
     public int allCount;
-    public final List<Comment> commentlist = new ArrayList<Comment>();
+    @ElementList(required = false)
+    public final List<Comment> comments = new ArrayList<Comment>();
 
 
     @Override
     public List<Comment> getList() {
-        return commentlist;
+        return comments;
     }
 
     public void sortList() {
-        Collections.sort(commentlist, new Comparator<Comment>() {
+        Collections.sort(comments, new Comparator<Comment>() {
 
             @Override
             public int compare(Comment lhs, Comment rhs) {

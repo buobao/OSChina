@@ -3,6 +3,10 @@ package com.turman.oschina.bean.list;
 import com.turman.oschina.bean.News;
 import com.turman.oschina.bean.base.Entity;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +18,7 @@ import java.util.List;
  *
  */
 @SuppressWarnings("serial")
+@Root(name = "oschina")
 public class NewsList extends Entity implements ListEntity<News> {
 	
 	public final static String PREF_READED_NEWS_LIST = "readed_news_list.pref";
@@ -25,14 +30,18 @@ public class NewsList extends Entity implements ListEntity<News> {
 	public final static int CATALOG_WEEK = 4;
 	public final static int CATALOG_MONTH = 5;
 
+	@Element(required = false)
 	public int catalog;
-	public int pageSize;
+	@Element(required = false)
+	public int pagesize;
+	@Element(required = false)
 	public int newsCount;
-	public List<News> list = new ArrayList<News>();
+	@ElementList(required = false)
+	public List<News> newslist = new ArrayList<News>();
 
 
 	@Override
 	public List<News> getList() {
-		return list;
+		return newslist;
 	}
 }

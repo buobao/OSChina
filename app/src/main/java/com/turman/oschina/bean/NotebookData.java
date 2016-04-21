@@ -2,6 +2,9 @@ package com.turman.oschina.bean;
 
 import com.turman.oschina.bean.base.Entity;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+
 import java.io.Serializable;
 
 /**
@@ -10,19 +13,26 @@ import java.io.Serializable;
  * @author kymjs (https://github.com/kymjs)
  * 
  */
+@Root(name = "sticky")
 public class NotebookData extends Entity implements Serializable,
         Comparable<NotebookData> {
     private static final long serialVersionUID = 1L;
 
+    @Element(required = false)
     public int id;
+    @Element(required = false)
     public int iid;
-    public String unixTime;
-    public String date;
+    @Element(required = false)
+    public String timestamp;
+    @Element(required = false)
+    public String updateTime;
+    @Element(required = false)
     public String content;
-    public String colorText;
+    @Element(required = false)
+    public String color;
 
     public String serverUpdateTime; // 服务器端需要，客户端无用,和unixTime一同设置
-    public int color;
+    public int resultcolor;
 
     @Override
     public boolean equals(Object o) {
@@ -34,10 +44,10 @@ public class NotebookData extends Entity implements Serializable,
                 try {
                     return (this.id == data.id)
                             && (this.iid == data.iid)
-                            && (this.unixTime == data.unixTime
-                            && (this.date.equals(data.date))
+                            && (this.timestamp == data.timestamp
+                            && (this.updateTime.equals(data.updateTime))
                             && (this.content == data.content)
-                            && (this.color == data.getColor()));
+                            && (this.resultcolor == data.getColor()));
                 } catch (NullPointerException e) {
                     return false;
                 }
@@ -48,46 +58,46 @@ public class NotebookData extends Entity implements Serializable,
     }
 
     public void setUnixTime(String time) {
-        this.unixTime = time;
+        this.timestamp = time;
         serverUpdateTime = time;
     }
 
 
     public int getColor() {
         // 客户端始终以当前手机上的颜色为准
-        if ("blue".equals(colorText)) {
-            this.color = 3;
-        } else if ("red".equals(colorText)) {
-            this.color = 2;
-        } else if ("yellow".equals(colorText)) {
-            this.color = 1;
-        } else if ("purple".equals(colorText)) {
-            this.color = 4;
-        } else if ("green".equals(colorText)) {
-            this.color = 0;
+        if ("blue".equals(color)) {
+            this.resultcolor = 3;
+        } else if ("red".equals(color)) {
+            this.resultcolor = 2;
+        } else if ("yellow".equals(color)) {
+            this.resultcolor = 1;
+        } else if ("purple".equals(color)) {
+            this.resultcolor = 4;
+        } else if ("green".equals(color)) {
+            this.resultcolor = 0;
         }
-        return color;
+        return resultcolor;
     }
 
     public void setColor(int color) {
         switch (color) {
         case 0:
-            colorText = "green";
+            this.color = "green";
             break;
         case 1:
-            colorText = "yellow";
+            this.color = "yellow";
             break;
         case 2:
-            colorText = "red";
+            this.color = "red";
             break;
         case 3:
-            colorText = "blue";
+            this.color = "blue";
             break;
         case 4:
-            colorText = "purple";
+            this.color = "purple";
             break;
         default:
-            this.color = color;
+            this.resultcolor = color;
             break;
         }
     }

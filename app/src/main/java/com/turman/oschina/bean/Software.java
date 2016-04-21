@@ -2,6 +2,10 @@ package com.turman.oschina.bean;
 
 import com.turman.oschina.bean.base.Entity;
 
+import org.simpleframework.xml.Default;
+import org.simpleframework.xml.DefaultType;
+import org.simpleframework.xml.Root;
+
 /**
  * 软件实体类
  * 
@@ -10,13 +14,15 @@ import com.turman.oschina.bean.base.Entity;
  * 
  */
 @SuppressWarnings("serial")
+@Root(name = "software")
+@Default(value = DefaultType.FIELD, required = false)
 public class Software extends Entity {
 
 	public String title;
 	public String author;
-	public int authorId;
+	public int authorid;
 	public int recommended;
-	public String extensionTitle;
+	public String extensiontitle;
 	public String license;
 	public String body;
 	public String homepage;

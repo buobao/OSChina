@@ -23,8 +23,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Observable;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -74,10 +74,21 @@ public class AppStart extends Activity {
                     }
                 }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<NewsList>() {
+                .subscribe(new Subscriber<NewsList>() {
                     @Override
-                    public void call(NewsList resultBean) {
-                        NewsList r = resultBean;
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onNext(NewsList resultBean) {
+                        NewsList b = resultBean;
+                        mToastUtil.showToast("Success");
                     }
                 });
     }

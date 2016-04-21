@@ -2,6 +2,10 @@ package com.turman.oschina.bean;
 
 import com.turman.oschina.bean.base.Entity;
 
+import org.simpleframework.xml.Default;
+import org.simpleframework.xml.DefaultType;
+import org.simpleframework.xml.Root;
+
 /**
  * 软件列表
  * 
@@ -10,6 +14,8 @@ import com.turman.oschina.bean.base.Entity;
  *
  */
 @SuppressWarnings("serial")
+@Root(name = "software")
+@Default(value = DefaultType.FIELD, required = false)
 public class SoftwareDec extends Entity {
 	private String name;
 	private String description;

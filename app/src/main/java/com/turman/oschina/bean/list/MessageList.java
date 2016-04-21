@@ -1,6 +1,11 @@
 package com.turman.oschina.bean.list;
 
+import com.turman.oschina.bean.Messages;
 import com.turman.oschina.bean.base.Entity;
+
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +17,17 @@ import java.util.List;
  *
  */
 @SuppressWarnings("serial")
+@Root(name = "oschina")
 public class MessageList extends Entity implements ListEntity<Messages> {
-
-	public int pageSize;
+	@Element(required = false)
+	public int pagesize;
+	@Element(required = false)
 	public int messageCount;
-	public List<Messages> messagelist = new ArrayList<Messages>();
+	@ElementList(required = false)
+	public List<Messages> messages = new ArrayList<Messages>();
 
 	@Override
 	public List<Messages> getList() {
-		return messagelist;
+		return messages;
 	}
 }
