@@ -368,12 +368,12 @@
         "source": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\src\\main\\res\\drawable\\umeng_socialize_wxcircle_gray.png"
     },
     {
-        "merged": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\res\\merged\\release\\drawable\\umeng_socialize_button_white_blue.xml",
-        "source": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\src\\main\\res\\drawable\\umeng_socialize_button_white_blue.xml"
-    },
-    {
         "merged": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\res\\merged\\release\\drawable\\umeng_socialize_instagram_on.png",
         "source": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\src\\main\\res\\drawable\\umeng_socialize_instagram_on.png"
+    },
+    {
+        "merged": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\res\\merged\\release\\drawable\\umeng_socialize_button_white_blue.xml",
+        "source": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\src\\main\\res\\drawable\\umeng_socialize_button_white_blue.xml"
     },
     {
         "merged": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\res\\merged\\release\\drawable\\umeng_socialize_line_gray.png",

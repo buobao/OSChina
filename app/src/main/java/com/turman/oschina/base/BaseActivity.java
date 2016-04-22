@@ -50,7 +50,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract void beforeSetContentView();
 
-    protected abstract void afterSetContentView();
+    protected abstract void afterSetContentView(View view);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,7 +65,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         mAppManager.addActivity(this);
         ButterKnife.bind(this,view);
 
-        afterSetContentView();
+        afterSetContentView(view);
     }
 
 

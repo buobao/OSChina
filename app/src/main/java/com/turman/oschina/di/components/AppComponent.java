@@ -38,5 +38,6 @@ public interface AppComponent {
     CacheManager getCacheManager();
     DataCleanManager getDataCleanManager();
     AppManager getAppManager();
+
     ActivityComponent plus(ActivityModule activityModule);
 }
