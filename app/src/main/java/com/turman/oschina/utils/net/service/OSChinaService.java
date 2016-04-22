@@ -13,6 +13,7 @@ import com.turman.oschina.bean.list.TweetLikeList;
 import com.turman.oschina.bean.list.TweetsList;
 import com.turman.oschina.utils.net.UrlHelper;
 
+import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -114,7 +115,7 @@ public interface OSChinaService {
      * @param report
      */
     @POST(UrlHelper.USER_REPORT_TO_ADMIN)
-    Observable<String> uploadLog(@Field("msg") String msg,@Field("app") String app,@Field("report") String report);
+    Call<String> uploadLog(@Query("msg") String msg, @Query("app") String app, @Query("report") String report);
 }
 
 

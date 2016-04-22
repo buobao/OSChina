@@ -11,14 +11,6 @@ import org.kymjs.kjframe.utils.FileUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Map;
-
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 public class LogUploadService extends BaseService {
 
@@ -37,36 +29,32 @@ public class LogUploadService extends BaseService {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        data = "load error";
         if (!StringUtils.isEmpty(data)) {
-            Map<String, String> params = new HashMap<>();
-            params.put("msg",data);
-            params.put("report","1");
-            params.put("app","1");
-            addTask(Observable.just(params)
-            .flatMap(new Func1<Map<String, String>, Observable<String>>() {
+            final String finalData = data;
+            new Thread(new Runnable() {
                 @Override
-                public Observable<String> call(Map<String, String> stringStringMap) {
-                    return mOSChinaService.uploadLog(stringStringMap.get("msg"),stringStringMap.get("app"),stringStringMap.get("report"));
+                public void run() {
+                    mOSChinaService.uploadLog(finalData,"1","1");
                 }
-            }).subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new Subscriber<String>() {
-                @Override
-                public void onCompleted() {
-                }
-
-                @Override
-                public void onError(Throwable e) {
-                    e.printStackTrace();
-                }
-
-                @Override
-                public void onNext(String s) {
-                    if (s.equals("success"))
-                        log.delete();
-                    LogUploadService.this.stopSelf();
-                }
-            }));
+            }).start();
+            mOSChinaService.uploadLog(data,"1","1");
+//            Call<String> call = mOSChinaService.uploadLog(data,"1","1");
+//            call.enqueue(new Callback<String>() {
+//                @Override
+//                public void onResponse(Call<String> call, Response<String> response) {
+//                    String result = response.body();
+//                    if ("success".equals(result)) {
+//                        log.delete();
+//                        LogUploadService.this.stopSelf();
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<String> call, Throwable t) {
+//
+//                }
+//            });
         } else {
             LogUploadService.this.stopSelf();
         }
