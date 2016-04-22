@@ -84,12 +84,12 @@
         "source": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\src\\main\\res\\layout\\umeng_bak_at_list.xml"
     },
     {
-        "merged": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\res\\merged\\release\\layout\\umeng_socialize_comment_content.xml",
-        "source": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\src\\main\\res\\layout\\umeng_socialize_comment_content.xml"
-    },
-    {
         "merged": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\res\\merged\\release\\layout\\com_facebook_login_fragment.xml",
         "source": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\src\\main\\res\\layout\\com_facebook_login_fragment.xml"
+    },
+    {
+        "merged": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\res\\merged\\release\\layout\\umeng_socialize_comment_content.xml",
+        "source": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\src\\main\\res\\layout\\umeng_socialize_comment_content.xml"
     },
     {
         "merged": "E:\\andriod-project\\OSChina\\social_sdk_library_project\\build\\intermediates\\res\\merged\\release\\layout\\umeng_socialize_facebook_login_activity_layout.xml",

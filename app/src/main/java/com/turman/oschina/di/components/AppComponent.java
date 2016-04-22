@@ -2,6 +2,7 @@ package com.turman.oschina.di.components;
 
 import android.content.Context;
 
+import com.turman.oschina.AppManager;
 import com.turman.oschina.base.BaseApplication;
 import com.turman.oschina.cache.CacheManager;
 import com.turman.oschina.cache.DataCleanManager;
@@ -36,5 +37,6 @@ public interface AppComponent {
     DiskLruCacheUtil getDiskLruCacheUtil();
     CacheManager getCacheManager();
     DataCleanManager getDataCleanManager();
+    AppManager getAppManager();
     ActivityComponent plus(ActivityModule activityModule);
 }

@@ -106,6 +106,15 @@ public interface OSChinaService {
      */
     @GET(UrlHelper.SOFTWARECATALOG_LIST)
     Observable<SoftwareCatalogList> getSoftwareCatalogList(@Query("tag") int tag);
+
+    /**
+     *
+     * @param msg   1:BUG上报  2:意见反馈
+     * @param app  "1"
+     * @param report
+     */
+    @POST(UrlHelper.USER_REPORT_TO_ADMIN)
+    Observable<String> uploadLog(@Field("msg") String msg,@Field("app") String app,@Field("report") String report);
 }
 
 

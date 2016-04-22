@@ -1,112 +1,111 @@
 package com.turman.oschina;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 
 import com.turman.oschina.base.BaseApplication;
-import com.turman.oschina.bean.list.NewsList;
 import com.turman.oschina.di.components.ActivityComponent;
 import com.turman.oschina.di.modules.ActivityModule;
-import com.turman.oschina.utils.SharedPreferencesUtil;
+import com.turman.oschina.ui.MainActivity;
+import com.turman.oschina.utils.TDevice;
 import com.turman.oschina.utils.ToastUtil;
 import com.turman.oschina.utils.net.service.OSChinaService;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.kymjs.kjframe.http.KJAsyncTask;
+import org.kymjs.kjframe.utils.FileUtils;
+import org.kymjs.kjframe.utils.PreferenceHelper;
+
+import java.io.File;
 
 import javax.inject.Inject;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by dqf on 2016/4/18.
  */
 public class AppStart extends Activity {
-    @Bind(R.id.show_txt)
-    protected TextView mTextView;
-    @Bind(R.id.show_btn)
-    protected Button mTextBtn;
-
-    @Inject
-    SharedPreferencesUtil mSharedPreferencesUtil;
-
     ActivityComponent mActivityComponent;
     @Inject
     ToastUtil mToastUtil;
     @Inject
     OSChinaService mService;
+    @Inject
+    AppManager mAppManager;
+    @Inject
+    TDevice mTDevice;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_start);
-        ButterKnife.bind(this);
-
-        //mActivityComponent = DaggerActivityComponent.builder().activityModule(new ActivityModule(this)).build();
         mActivityComponent = ((BaseApplication)getApplication()).getAppComponent().plus(new ActivityModule(this));
         mActivityComponent.inject(this);
 
-
-//        mSharedPreferencesUtil = ((BaseAppliation)getApplication()).getAppComponent().getSharedPreferencesUtil();
-        mSharedPreferencesUtil.set("userName","buobao");
-
-        Map<String, Integer> params = new HashMap<>();
-        params.put("catalog",1);
-        params.put("pageIndex",1);
-        params.put("pageSize",20);
-        Observable.just(params)
-                .flatMap(new Func1<Map<String, Integer>, Observable<NewsList>>() {
-                    @Override
-                    public Observable<NewsList> call(Map<String, Integer> stringIntegerMap) {
-                        Observable<NewsList> r = mService.getNewsList(stringIntegerMap.get("catalog"),stringIntegerMap.get("pageIndex"),stringIntegerMap.get("pageSize"));
-                        return r;
-                    }
-                }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<NewsList>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onNext(NewsList resultBean) {
-                        NewsList b = resultBean;
-                        mToastUtil.showToast("Success");
-                    }
-                });
-    }
-
-    @OnClick({R.id.show_btn})
-    protected void buttonClick(View v){
-        switch (v.getId()){
-            case R.id.show_btn:
-                mToastUtil.showToast("This messga from Toast!");
-                mTextView.setText(mSharedPreferencesUtil.get("userName","default"));
-                break;
+        // 防止第三方跳转时出现双实例
+        Activity aty = mAppManager.getActivity(MainActivity.class);
+        if (aty != null && !aty.isFinishing()) {
+            finish();
         }
+
+        final View view = View.inflate(this, R.layout.act_start, null);
+        setContentView(view);
+
+        // 渐变展示启动屏
+        AlphaAnimation aa = new AlphaAnimation(0.5f, 1.0f);
+        aa.setDuration(800);
+        view.startAnimation(aa);
+        aa.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationEnd(Animation arg0) {
+                redirectTo();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {}
+
+            @Override
+            public void onAnimationStart(Animation animation) {}
+        });
+
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
+    protected void onResume() {
+        super.onResume();
+        int cacheVersion = PreferenceHelper.readInt(this, "first_install",
+                "first_install", -1);
+        int currentVersion = mTDevice.getVersionCode();
+        if (cacheVersion < currentVersion) {
+            PreferenceHelper.write(this, "first_install", "first_install",
+                    currentVersion);
+            cleanImageCache();
+        }
+    }
+
+    private void cleanImageCache() {
+        final File folder = FileUtils.getSaveFolder("OSChina/imagecache");
+        KJAsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                for (File file : folder.listFiles()) {
+                    file.delete();
+                }
+            }
+        });
+    }
+
+    /**
+     * 跳转到...
+     */
+    private void redirectTo() {
+        Intent uploadLog = new Intent(this, LogUploadService.class);
+        startService(uploadLog);
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
 

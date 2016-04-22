@@ -36,4 +36,7 @@ public class UrlHelper {
 
     public static final String SOFTWARECATALOG_LIST = "softwarecatalog_list";
 
+
+    public static final String USER_REPORT_TO_ADMIN = "user_report_to_admin";
+
 }

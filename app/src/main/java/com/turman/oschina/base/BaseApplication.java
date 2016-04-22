@@ -11,6 +11,7 @@ import com.turman.oschina.di.components.DaggerAppComponent;
 import com.turman.oschina.di.modules.AppModule;
 import com.turman.oschina.utils.AppUtil;
 import com.turman.oschina.utils.SharedPreferencesUtil;
+import com.turman.oschina.utils.TDevice;
 import com.turman.oschina.utils.ToastUtil;
 
 import javax.inject.Inject;
@@ -36,6 +37,8 @@ public class BaseApplication extends Application{
     protected AppUtil mAppUtil;
     @Inject
     protected ToastUtil mToastUtil;
+    @Inject
+    protected TDevice mTDevice;
     @Inject
     protected DataCleanManager mDataCleanManager;
 
@@ -65,6 +68,10 @@ public class BaseApplication extends Application{
 
     public DataCleanManager getDataCleanManager(){
         return mDataCleanManager;
+    }
+
+    public TDevice getTDevice(){
+        return mTDevice;
     }
 }
 
