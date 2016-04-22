@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.turman.oschina.AppContext;
 import com.turman.oschina.R;
 import com.turman.oschina.di.components.FragmentComponent;
 import com.turman.oschina.di.modules.FragmentModule;
@@ -29,6 +30,7 @@ public class BaseFragment extends Fragment implements android.view.View.OnClickL
 
     protected FragmentComponent mFragmentComponent;
     protected LayoutInflater mInflater;
+    protected AppContext mAppContext;
 
     public FragmentComponent getFragmentComponent() {
         return mFragmentComponent;
@@ -39,6 +41,7 @@ public class BaseFragment extends Fragment implements android.view.View.OnClickL
         super.onCreate(savedInstanceState);
         mFragmentComponent = ((BaseActivity)getActivity()).getActivityComponent().plus(new FragmentModule(this));
         mFragmentComponent.inject(this);
+        mAppContext = ((BaseActivity)getActivity()).getAppContext();
     }
 
     @Nullable

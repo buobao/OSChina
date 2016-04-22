@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'newlens'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -47,6 +48,7 @@ dependencies {
     compile 'com.google.guava:guava:18.0'
 
     compile 'org.kymjs.kjframe:kjframe:2.6'
+    compile 'com.networkbench.newlens.agent.android:nbs.newlens.agent:2.2.7'
 
     compile project(':social_sdk_library_project')
 }

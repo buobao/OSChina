@@ -5,9 +5,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.turman.oschina.AppContext;
 import com.turman.oschina.AppManager;
+import com.turman.oschina.cache.DataCleanManager;
 import com.turman.oschina.di.components.ActivityComponent;
 import com.turman.oschina.di.modules.ActivityModule;
+import com.turman.oschina.utils.DoubleClickExitHelper;
+import com.turman.oschina.utils.SharedPreferencesUtil;
 import com.turman.oschina.utils.ToastUtil;
 import com.turman.oschina.utils.net.service.OSChinaService;
 
@@ -20,6 +24,7 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseActivity extends AppCompatActivity {
     protected ActivityComponent mActivityComponent;
+    protected AppContext mAppContext;
 
     @Inject
     protected ToastUtil mToastUtil;
@@ -27,6 +32,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected OSChinaService mService;
     @Inject
     protected AppManager mAppManager;
+    @Inject
+    protected DoubleClickExitHelper mDoubleClickExitHelper;
+    @Inject
+    protected DataCleanManager mDataCleanManager;
+    @Inject
+    protected SharedPreferencesUtil mSharedPreferencesUtil;
 //    @Inject
 //    protected AppContext mAppContext;   //注入报错，这里不能在activity中注入上下文
 
@@ -55,12 +66,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mActivityComponent = ((BaseApplication)getApplication()).getAppComponent().plus(new ActivityModule(this));
+        mActivityComponent.inject(this);
+        mAppContext = (AppContext) getApplication();
+
         beforeSetContentView();
         View view = getLayoutInflater().inflate(getLayout(),null);
         setContentView(view);
-
-        mActivityComponent = ((BaseApplication)getApplication()).getAppComponent().plus(new ActivityModule(this));
-        mActivityComponent.inject(this);
 
         mAppManager.addActivity(this);
         ButterKnife.bind(this,view);
@@ -73,5 +85,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
+    }
+
+    public AppContext getAppContext() {
+        return mAppContext;
     }
 }
